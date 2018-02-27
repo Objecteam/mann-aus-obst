@@ -13,5 +13,52 @@
 <body>
   <!-- Include the script that builds the page and powers Netlify CMS -->
   <script src="https://unpkg.com/netlify-cms@^1.0.0/dist/cms.js"></script>
+  <script>                if (window.netlifyIdentity) {
+                      window.netlifyIdentity.on("init", user => {
+                          if (!user) {
+                              window.netlifyIdentity.on("login", () => {
+                                  document.location.href = "/admin/";
+                              });
+                          }
+                      });
+                  }
+</script>
+<script>
+CMS.registerEditorComponent({
+    // Internal id of the component
+    id: "gallery3",
+    // Visible label
+    label: "Gallery 3",
+    // Fields the user need to fill out when adding an instance of the component
+    fields: [
+        {name: 'large_image', label: 'Large Image', widget: 'image'},
+        {name: 'small_image_1', label: 'Small Image', widget: 'image'},
+        {name: 'small_image_2', label: 'Small Image', widget: 'image'},
+    ],
+    // Pattern to identify a block as being an instance of this component
+    pattern: /^gallery3 (\S+)$/,
+    // Function to extract data elements from the regexp match
+    fromBlock: function(match) {
+        return {
+          large_image: match[1],
+          small_image_1: match[2],
+          small_image_2: match[3]
+        };
+    },
+    // Function to create a text block from an instance of this component
+    toBlock: function(obj) {
+    return 'gallery3 ' + obj.large_image + obj.small_image_1 + obj.small_image_2;
+    },
+    // Preview output for this component. Can either be a string or a React component
+    // (component gives better render performance)
+    toPreview: function(obj) {
+    return (
+      '<img src="' + obj.large_image + '"/>'
+      '<img src="' + obj.small_image_1 + '"/>'
+      '<img src="' + obj.small_image_2 + '"/>'
+    );
+    }
+});
+</script>
 </body>
 </html>
