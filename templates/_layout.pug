@@ -1,0 +1,25 @@
+doctype html
+html(lang=language.locale)
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+        meta(name="viewport" content="width=device-width,initial-scale=1")
+        block title
+        
+        link(rel="stylesheet" href="css/styles.css" type="text/css")
+        script(src="https://identity.netlify.com/v1/netlify-identity-widget.js")
+    body
+        block content
+
+        script(src="scripts/main.js")
+        script
+            :babel
+                if (window.netlifyIdentity) {
+                    window.netlifyIdentity.on("init", user => {
+                        if (!user) {
+                            window.netlifyIdentity.on("login", () => {
+                                document.location.href = "/admin/";
+                            });
+                        }
+                    });
+                }

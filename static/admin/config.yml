@@ -1,0 +1,264 @@
+backend:
+    name: git-gateway
+    branch: master # Branch to update (optional; defaults to master)
+publish_mode: editorial_workflow
+media_folder: "static/images" # Media files will be stored in the repo under static/images
+public_folder: "/images" # The src attribute for uploaded media will begin with /images
+collections:
+    - name: "ensemble"
+      label: "Ensemble"
+      folder: "content/ensemble"
+      create: true
+      extension: yml
+      slug: "{{slug}}"
+      fields:
+          - label: "Name"
+            name: "title"
+            widget: "string"
+          - label: "Image"
+            name: "image"
+            widget: "image"
+            required: false
+          - label: "German Text"
+            name: "content"
+            widget: "markdown"
+            required: false
+          - label: "English Text"
+            name: "content_en"
+            widget: "markdown"
+            required: false
+          - label: "French Text"
+            name: "content_fr"
+            widget: "markdown"
+            required: false
+          - label: "Audio"
+            name: "audio"
+            required: false
+            widget: "list"
+            field:
+                - label: "Audio Link"
+                  name: "link"
+                  widget: "relation"
+                  collection: "audio"
+                  searchFields: ["title"]
+                  valueField: "link"
+    - name: "audio"
+      label: "Audio"
+      folder: "content/audio"
+      create: true
+      extension: yml
+      slug: "{{slug}}"
+      fields:
+          - label: "Title"
+            name: "title"
+            widget: "string"
+          - label: "Soundcloud Link"
+            name: "link"
+            widget: "string"
+    - name: "projekte"
+      label: "Projekte"
+      folder: "content/projekte"
+      create: true
+      extension: yml
+      slug: "{{slug}}"
+      fields:
+          - label: "German Title"
+            name: "title"
+            widget: "string"
+          - label: "English Title"
+            name: "title_en"
+            widget: "string"
+            required: false
+          - label: "French Title"
+            name: "title_fr"
+            widget: "string"
+            required: false
+          - label: "Date"
+            name: "date"
+            widget: "string"
+            required: false
+          - label: "Soundcloud Link"
+            name: "link"
+            widget: "string"
+            required: false
+          - label: "Image"
+            name: "image"
+            widget: "image"
+            required: false
+          - label: "Credits"
+            name: "credits"
+            widget: "list"
+            required: false
+            fields:
+                - label: "Member"
+                  name: "member"
+                  widget: "relation"
+                  collection: "ensemble"
+                  searchFields: ["title"]
+                  valueField: "title"
+                - label: "Role German"
+                  name: "role"
+                  widget: "text"
+                - label: "Role English"
+                  name: "role_en"
+                  widget: "text"
+                  required: false
+                - label: "Role French"
+                  name: "role_fr"
+                  widget: "text"
+                  required: false
+          - label: "German Text"
+            name: "content"
+            widget: "markdown"
+            required: false
+          - label: "English Text"
+            name: "content_en"
+            widget: "markdown"
+            required: false
+          - label: "French Text"
+            name: "content_fr"
+            widget: "markdown"
+            required: false
+    - label: "Pages"
+      name: "pages"
+      files:
+          - label: "Wie Wir Arbeiten"
+            name: "wiewirarbeiten"
+            file: "content/wiewirarbeiten.yml"
+            fields:
+                - label: "German Title"
+                  name: "title"
+                  widget: "string"
+                - label: "English Title"
+                  name: "title_en"
+                  widget: "string"
+                  required: false
+                - label: "French Title"
+                  name: "title_fr"
+                  widget: "string"
+                  required: false
+                - label: "German Text"
+                  name: "content"
+                  widget: "markdown"
+                  required: false
+                - label: "English Text"
+                  name: "content_en"
+                  widget: "markdown"
+                  required: false
+                - label: "French Text"
+                  name: "content_fr"
+                  widget: "markdown"
+                  required: false
+          - label: "Impressum"
+            name: "impressum"
+            file: "content/impressum.yml"
+            fields:
+                - label: "German Title"
+                  name: "title"
+                  widget: "string"
+                - label: "English Title"
+                  name: "title_en"
+                  widget: "string"
+                  required: false
+                - label: "French Title"
+                  name: "title_fr"
+                  widget: "string"
+                  required: false
+                - label: "German Text"
+                  name: "content"
+                  widget: "markdown"
+                  required: false
+                - label: "English Text"
+                  name: "content_en"
+                  widget: "markdown"
+                  required: false
+                - label: "French Text"
+                  name: "content_fr"
+                  widget: "markdown"
+                  required: false
+          - label: "Kontakt"
+            name: "kontakt"
+            file: "content/kontakt.yml"
+            fields:
+                - label: "German Title"
+                  name: "title"
+                  widget: "string"
+                - label: "English Title"
+                  name: "title_en"
+                  widget: "string"
+                  required: false
+                - label: "French Title"
+                  name: "title_fr"
+                  widget: "string"
+                  required: false
+                - label: "German Text"
+                  name: "content"
+                  widget: "markdown"
+                  required: false
+                - label: "English Text"
+                  name: "content_en"
+                  widget: "markdown"
+                  required: false
+                - label: "French Text"
+                  name: "content_fr"
+                  widget: "markdown"
+                  required: false
+          - label: "Home"
+            name: "home"
+            file: "content/index.yml"
+            fields:
+                - label: "German Title"
+                  name: "title"
+                  widget: "string"
+                - label: "English Title"
+                  name: "title_en"
+                  widget: "string"
+                  required: false
+                - label: "French Title"
+                  name: "title_fr"
+                  widget: "string"
+                  required: false
+                - label: "German Text"
+                  name: "content"
+                  widget: "markdown"
+                  required: false
+                - label: "English Text"
+                  name: "content_en"
+                  widget: "markdown"
+                  required: false
+                - label: "French Text"
+                  name: "content_fr"
+                  widget: "markdown"
+                  required: false
+          - label: "Links"
+            name: "links"
+            file: "content/links.yml"
+            fields:
+                - label: "German Title"
+                  name: "title"
+                  widget: "string"
+                - label: "English Title"
+                  name: "title_en"
+                  widget: "string"
+                  required: false
+                - label: "French Title"
+                  name: "title_fr"
+                  widget: "string"
+                  required: false
+                - label: "Links"
+                  name: "links"
+                  required: false
+                  widget: "list"
+                  fields:
+                    - label: "Link"
+                      name: "link"
+                      widget: "string"
+                    - label: "Text German"
+                      name: "text"
+                      widget: "string"
+                    - label: "Text English"
+                      name: "text_en"
+                      widget: "string"
+                    - label: "Text French"
+                      name: "text_fr"
+                      widget: "string"

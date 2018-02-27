@@ -1,0 +1,15 @@
+siteurl: ''
+summaryLength: 300
+siteTitle: 'MaNN AUS OBST'
+publicDir: './public'
+contentDir: './content'
+staticDir: './static'
+dateFormat: 'LL'
+languages: 
+    - path: '/'
+      locale: 'de'
+      name: 'Deutsch'
+    - path: '/en'
+      locale: 'en'
+      name: 'English'
+defaultLanguage: 'de'
